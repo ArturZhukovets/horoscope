@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Гороскоп для {{ sign|capfirst }}</title>
-</head>
-<body>
-    {% if description_zodiac is None %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Horoscope for {{sign|upper}}{% endblock %}
+
+{% block css_s %}
+ <link rel="stylesheet" href=" {% static 'horoscope/css/info.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <h1>{{sign_name}}</h1>
+{% if description_zodiac is None %}
         <h2>Неправильный знак зодиака  - {{ sign| upper}}</h2>
     {% else %}
-    <h2>{{ description_zodiac }}</h2>
+        <h2>{{ description_zodiac }}</h2>
     {% endif %}
 
-    <h2>{{ my_list }}</h2>
+{% endblock %}
+
 </body>
 </html>

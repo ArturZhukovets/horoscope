@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
 
 zodiac_dict = {
     'aries': 'Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).',
@@ -90,11 +89,13 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     И в словаре ключ - это переменная, которую мы передаем в шаблон! А значение этого ключа = это значение, которое будет отображаться"""
     # response = render_to_string('horoscope/info_zodiac.html')
     # return HttpResponse(response)
+    zodiacs = list(zodiac_dict)
     description = zodiac_dict.get(sign_zodiac)  # В переменной мы обращаемся к словарю и берем значение используя вместо ключа введённое пользователем значение.
     data = {
         'sign': sign_zodiac,
         'description_zodiac': description,  # Ключи в созданном словаре, будут являтся переменными в html шаблоне!
-        # 'my_list': [1, 3, 5, 7, 9]
+        'zodiacs': zodiacs,
+        'sign_name': description.split()[0]
     }
     return render(request, 'horoscope/info_zodiac.html',
                   context=data)  # Через аргумент context я передаю данные в виде словаря

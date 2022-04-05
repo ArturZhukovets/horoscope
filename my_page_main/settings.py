@@ -55,7 +55,9 @@ ROOT_URLCONF = 'my_page_main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates'    # Здесь указываю где нужно искать доп. шаблоны (в папке всего проекта в папке templates)
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [            # Создаю переменную, в которой указываю где искать дополнительные статические файлы
+    BASE_DIR / 'static'         # В папке проекта в папке static! Ищем статические файлы вне приложений
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

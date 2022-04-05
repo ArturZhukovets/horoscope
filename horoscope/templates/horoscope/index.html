@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Меню</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_s %}
+ <link rel="stylesheet" href=" {% static 'horoscope/css/index.css' %}">
+{% endblock %}
+
+{% block title%} Меню {% endblock %}
+
+
+{% block content %}
+
+    <h1>Приложение Гороскоп</h1>
     <ul>
         {% for zodiac in zodiacs %}
-                <li><a href="{% url 'horoscope-name' sign_zodiac=zodiac %}">{{ forloop.counter }} {{ zodiac|title}}</a></li>
+                <li><a href="{% url 'horoscope-name' sign_zodiac=zodiac %}">{{ zodiac|title}}</a></li>
         {% endfor %}
     </ul>
 
 
 
-</body>
-</html>
+{% endblock %}
+

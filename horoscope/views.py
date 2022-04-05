@@ -101,6 +101,7 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
                   context=data)  # Через аргумент context я передаю данные в виде словаря
 
 
+
 def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
     """Здесь создаётся функция, которая редиректит запрос в строке юрла. Мы вводим номер знака зодиака и нас
     редиректит на значение этого номера по индексу"""

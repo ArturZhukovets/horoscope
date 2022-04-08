@@ -26,7 +26,8 @@ types_dict = {
 
 
 def index(request):
-    """Здесь создаю отображение главной страницы по url horoscope подробности реализации УРОК №17"""
+    """Здесь создаю отображение главной страницы по url horoscope подробности реализации УРОК №17
+    В качестве аргументов функции render выступает: request, html файл, context - словарь с контентом"""
     zodiacs = list(zodiac_dict)  # создаём список знаков зодиака
     # f"<li><a href='{redirect_path}'>{sign.title()} </a></li>"
     # li_elements = ''  # создаём результирующую строку
@@ -89,13 +90,11 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     И в словаре ключ - это переменная, которую мы передаем в шаблон! А значение этого ключа = это значение, которое будет отображаться"""
     # response = render_to_string('horoscope/info_zodiac.html')
     # return HttpResponse(response)
-    zodiacs = list(zodiac_dict)
     description = zodiac_dict.get(sign_zodiac)  # В переменной мы обращаемся к словарю и берем значение используя вместо ключа введённое пользователем значение.
     data = {
         'sign': sign_zodiac,
         'description_zodiac': description,  # Ключи в созданном словаре, будут являтся переменными в html шаблоне!
-        'zodiacs': zodiacs,
-        'sign_name': description.split()[0]
+        'zodiacs': zodiac_dict,
     }
     return render(request, 'horoscope/info_zodiac.html',
                   context=data)  # Через аргумент context я передаю данные в виде словаря

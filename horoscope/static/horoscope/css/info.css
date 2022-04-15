@@ -12,3 +12,10 @@ h1 {
     font-family: Geneva, Arial, Helvetica, sans-serif;
     font-size: 40px;
 }
+
+p {
+    text-align: center;
+    margin-left: 200px;
+    font-size: 25pt;
+    color: #e8dede;
+}

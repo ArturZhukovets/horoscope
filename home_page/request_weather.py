@@ -14,9 +14,9 @@ def request_how_to_know_city_id():
         data = res.json()
         cities = ["{} ({})".format(d['name'], d['sys']['country'])
                   for d in data['list']]
-        print("city:", cities)
+        #print("city:", cities)
         city_id = data['list'][0]['id']
-        print('city_id=', city_id)
+        #print('city_id=', city_id)
     except Exception as e:
         print("Exception (find):", e)
         pass
@@ -26,16 +26,24 @@ def request_get_weather():
         res = requests.get("http://api.openweathermap.org/data/2.5/weather",
                            params={'id': CITY_ID, 'units': 'metric', 'lang': 'ru', 'APPID': API_WEATHER_KEY})
         data = res.json()
-        print("Состояние:", data['weather'][0]['description'])
-        print("Актуальная температура:", data['main']['temp'])
-        print("Минимальная температура:", data['main']['temp_min'])
-        print("Максимальная температура:", data['main']['temp_max'])
-        print(data)
+        # print("Состояние:", data['weather'][0]['description'])
+        # print("Актуальная температура:", data['main']['temp'])
+        # print("Минимальная температура:", data['main']['temp_min'])
+        # print("Максимальная температура:", data['main']['temp_max'])
+        # print(data)
         # return(f"{data['weather'][0]['description']}"
         #        f"{data['main']['temp']}"
         #        f"{data['main']['temp_min']}"
         #        f"{data['main']['temp_max']}")
-        return [data['weather'][0]['description'], data['main']['temp'], data['main']['temp_min'], data['main']['temp_max']]
+        # return [data['weather'][0]['description'], data['main']['temp'], data['main']['temp_min'], data['main']['temp_max']]
+        working_string = [data['weather'][0]['description'], data['main']['temp'], data['main']['temp_min'], data['main']['temp_max']]
+        glossary = {
+            'Состояние': working_string[0],
+            'Температура': working_string[1],
+            'Минимальная температура': working_string[2],
+            'Максимальная температура': working_string[3],
+        }
+        return glossary
     except Exception as e:
         print("Exception (weather):", e)
         pass

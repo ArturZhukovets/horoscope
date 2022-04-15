@@ -1,0 +1,13 @@
+{% extends 'base_home_page.html'%}
+{% load static %}
+
+{% block title %}Погода{% endblock %}
+
+{% block content %}
+{% include 'includes/navbar_home.html' %}
+    <h2>Weather today | Is on developing</h2>
+    <h3>This page will show the weather someday...☻</h3>
+    {% for description, value in weather.items %}
+        <p><strong>{{description }}</strong> : {{ value }}</p>
+    {% endfor %}
+{% endblock %}

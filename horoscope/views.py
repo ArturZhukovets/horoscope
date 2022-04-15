@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from .models import Horoscope
+from horoscope.description_request import open_file
+
 
 zodiac_dict = {
     'aries': 'Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).',
@@ -48,7 +51,7 @@ def index(request):
 
 
 def info_about_type_of_sign_of_zodiac(request):
-    """Здесь создаем НЕ динамическую вьюху, в которой будут хранится сущесвтующие типы знаков"""
+    """Здесь создаем НЕ динамическую вьюху, в которой будут храниться существующие типы знаков"""
     # types_of_zodiac_list = ["fire", "earth", "air", "water"]
     li_types = ''
 
@@ -90,11 +93,16 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     И в словаре ключ - это переменная, которую мы передаем в шаблон! А значение этого ключа = это значение, которое будет отображаться"""
     # response = render_to_string('horoscope/info_zodiac.html')
     # return HttpResponse(response)
+    horoscope_from_db = Horoscope.objects.get(zodiac_name=sign_zodiac)
+
+
     description = zodiac_dict.get(sign_zodiac)  # В переменной мы обращаемся к словарю и берем значение используя вместо ключа введённое пользователем значение.
     data = {
         'sign': sign_zodiac,
         'description_zodiac': description,  # Ключи в созданном словаре, будут являтся переменными в html шаблоне!
         'zodiacs': zodiac_dict,
+        'horoscope': horoscope_from_db
+
     }
     return render(request, 'horoscope/info_zodiac.html',
                   context=data)  # Через аргумент context я передаю данные в виде словаря

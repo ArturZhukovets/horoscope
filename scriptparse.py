@@ -4,6 +4,7 @@ import lxml
 import sys
 import json
 
+
 def get_data():
     url = 'https://astroscope.ru/'
     cookies = {
@@ -47,7 +48,7 @@ def get_data():
         )
 
 
-    with open('horoscope.json', 'w', encoding='utf-8') as file:
+    with open('data/horoscope.json', 'w', encoding='utf-8') as file:
         json.dump(content, file, indent=4, ensure_ascii=False)
     #zodiac.split('/')[5].replace('.html', '')
 

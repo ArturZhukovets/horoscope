@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from .models import Horoscope
+from .models import update_horoscope_script
 from horoscope.description_request import open_file
 
 
@@ -26,6 +27,14 @@ types_dict = {
     'air': ['gemini', 'libra', 'aquarius'],
     'water': ['cancer', 'scorpio', 'pisces'],
 }
+
+
+# def update_horoscope_script(request, file=open_file()):
+#     for horoscope in file:
+#         for key, value in horoscope.items():
+#             new_horoscope = Horoscope.objects.get(zodiac_name=key)
+#             new_horoscope.horoscope_description = value
+#             new_horoscope.save()
 
 
 def index(request):
@@ -93,6 +102,7 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     И в словаре ключ - это переменная, которую мы передаем в шаблон! А значение этого ключа = это значение, которое будет отображаться"""
     # response = render_to_string('horoscope/info_zodiac.html')
     # return HttpResponse(response)
+    update_horoscope_script()
     horoscope_from_db = Horoscope.objects.get(zodiac_name=sign_zodiac)
 
 

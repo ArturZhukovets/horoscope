@@ -29,14 +29,6 @@ types_dict = {
 }
 
 
-# def update_horoscope_script(request, file=open_file()):
-#     for horoscope in file:
-#         for key, value in horoscope.items():
-#             new_horoscope = Horoscope.objects.get(zodiac_name=key)
-#             new_horoscope.horoscope_description = value
-#             new_horoscope.save()
-
-
 def index(request):
     """Здесь создаю отображение главной страницы по url horoscope подробности реализации УРОК №17
     В качестве аргументов функции render выступает: request, html файл, context - словарь с контентом"""
@@ -118,7 +110,6 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
                   context=data)  # Через аргумент context я передаю данные в виде словаря
 
 
-
 def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
     """Здесь создаётся функция, которая редиректит запрос в строке юрла. Мы вводим номер знака зодиака и нас
     редиректит на значение этого номера по индексу"""
@@ -139,3 +130,14 @@ def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
 
 def get_info_by_date(request, mounth, day):
     return HttpResponse(f'<h2>Месяц - {mounth} День - {day}')
+
+
+def get_horoscope_for_30_days(request, sign_zodiac: str, zodiac_slug: str):
+
+    horoscope_for_30_days = Horoscope.objects.get(zodiac_name=sign_zodiac, slug=zodiac_slug)
+    context = {
+        'horoscope_for_30_days': horoscope_for_30_days
+
+    }
+    return render(request, 'horoscope/horoscope_for_30_days.html', context=context)
+

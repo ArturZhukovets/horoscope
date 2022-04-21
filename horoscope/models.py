@@ -1,12 +1,21 @@
 from django.db import models
 from horoscope.description_request import open_file
+from django.utils.text import slugify
 from scriptparse import get_data
 # Create your models here.
 
 
 class Horoscope(models.Model):
     zodiac_name = models.CharField(max_length=30)
-    horoscope_description = models.TextField()
+    horoscope_description = models.TextField(null=True)
+    slug = models.SlugField(default='', max_length=20)
+    horoscope_on_30_days = models.TextField(null=True)
+
+    def save(self, *args, **kwargs):
+        """Переопределил метод save для того, чтобы добавить всем полям slug новое значение. Обновленный метод save
+        срабатывает в методе update_horoscope_script"""
+        self.slug = slugify(self.zodiac_name)
+        super(Horoscope, self).save(*args, **kwargs)  # Я хз что эта функция делает, надо будет разобраться
 
     def __str__(self):
         return f'{self.zodiac_name}'

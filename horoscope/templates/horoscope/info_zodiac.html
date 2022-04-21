@@ -18,7 +18,7 @@
     {% endif %}
 
     <p class="horoscope_today">{{ horoscope.horoscope_description }}</p>
-
+    <p><strong><a href="{% url 'horoscope-for-30-days' sign_zodiac=sign zodiac_slug=sign %}">Узнать гороскоп на 30 дней</a></strong></p>
 
 {% endblock %}
 

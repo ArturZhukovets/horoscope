@@ -22,7 +22,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('horoscope/', include('horoscope.urls')),
-    path('', include('home_page.urls'))
+    path('', include('home_page.urls')),
+    path('dictionary/', include('english_grammar_dictionary.urls')),
+
 
 
 ]

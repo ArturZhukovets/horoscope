@@ -1,0 +1,31 @@
+{% extends 'base_home_page.html' %}
+{% load static %}
+
+{% block title%} Меню {% endblock %}
+
+{% block css_s %}
+<link rel="stylesheet" href="{% static 'english_grammar_dictionary/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!--<h1>Hello, World!</h1>-->
+    <table border>
+        <tr class="zagolovok">
+            <th class="zagolovok">Word</th>
+            <th class="zagolovok">Translation</th>
+            <th class="zagolovok">Transcription</th>
+            <th class="zagolovok">Context</th>
+        </tr>
+    {% for word in content %}
+       <tr class="content">
+           <td>{{ word.word }}</td>
+           <td>{{word.translation}}</td>
+           <td>{{word.transcription}}</td>
+           <td>{{word.context}}</td>
+
+       </tr>
+
+   {% endfor %}
+    </table>
+{% endblock %}

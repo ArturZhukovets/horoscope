@@ -129,15 +129,15 @@ def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
 
 
 def get_info_by_date(request, mounth, day):
+
     return HttpResponse(f'<h2>Месяц - {mounth} День - {day}')
 
 
 def get_horoscope_for_30_days(request, sign_zodiac: str, zodiac_slug: str):
-
+    c = 2
     horoscope_for_30_days = Horoscope.objects.get(zodiac_name=sign_zodiac, slug=zodiac_slug)
     context = {
-        'horoscope_for_30_days': horoscope_for_30_days
-
+        'horoscope_for_30_days': horoscope_for_30_days,
     }
     return render(request, 'horoscope/horoscope_for_30_days.html', context=context)
 

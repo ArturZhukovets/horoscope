@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',   # для shell_plus
     'home_page',
     'horoscope',
+    'english_grammar_dictionary',
 ]
 
 MIDDLEWARE = [

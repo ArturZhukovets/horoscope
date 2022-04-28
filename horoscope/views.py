@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from .models import Horoscope
 from .models import update_horoscope_script
+from datetime import datetime, date
 from horoscope.description_request import open_file
 
 
@@ -96,14 +97,15 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     # return HttpResponse(response)
     update_horoscope_script()
     horoscope_from_db = Horoscope.objects.get(zodiac_name=sign_zodiac)
-
+    time = datetime.now().strftime("%d/%m/%Y")
 
     description = zodiac_dict.get(sign_zodiac)  # В переменной мы обращаемся к словарю и берем значение используя вместо ключа введённое пользователем значение.
     data = {
         'sign': sign_zodiac,
         'description_zodiac': description,  # Ключи в созданном словаре, будут являтся переменными в html шаблоне!
         'zodiacs': zodiac_dict,
-        'horoscope': horoscope_from_db
+        'horoscope': horoscope_from_db,
+        'time': time
 
     }
     return render(request, 'horoscope/info_zodiac.html',

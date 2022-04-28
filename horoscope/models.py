@@ -1,5 +1,5 @@
 from django.db import models
-from horoscope.description_request import open_file
+from horoscope.description_request import open_file, open_horoscope_for_30_days
 from django.utils.text import slugify
 from scriptparse import get_data
 # Create your models here.
@@ -21,6 +21,10 @@ class Horoscope(models.Model):
         return f'{self.zodiac_name}'
 
 
+    # def horoscope_description(self):
+    #     return Horoscope.objects.get(zodiac_name=self)
+
+
 def update_horoscope_script(file=open_file()):
     """Наконец-то запилил функцию с обновлением БД. Не знаю правильно она реализована или нет, оно и не важно пока, главное, что работает.
     Когда будут знания как сделать правильно - сделаю правильно. Функция открывает json файл, который я запарсил с сайта и на основе данных обновляет БД"""
@@ -30,3 +34,9 @@ def update_horoscope_script(file=open_file()):
             new_horoscope = Horoscope.objects.get(zodiac_name=key)
             new_horoscope.horoscope_description = value
             new_horoscope.save()
+
+# for i in cont:
+#     for key, value in i.items():
+#         obnova = Horoscope.objects.get(zodiac_name=key)
+#         obnova.horoscope_on_30_days = value
+#         obnova.save()

@@ -2,7 +2,7 @@
 
 {% load static %}
 {% load my_filter %}
-{% block title%}Horoscope for {{sign|upper}}{% endblock %}
+{% block title%}Horoscope for {{sign|upper}}на{{time}}{% endblock %}
 
 
 {% block css_s %}
@@ -17,7 +17,8 @@
         <h2>{{ description_zodiac }}</h2>
     {% endif %}
 
-    <p class="horoscope_today">{{ horoscope.horoscope_description }}</p>
+<!--    <h4 class="time">Гороскоп на {{ time }}</h4>-->
+    <p class="horoscope_today"><strong class="time">Гороскоп на {{ time }}.</strong> {{ horoscope.horoscope_description }}</p>
     <p><strong><a href="{% url 'horoscope-for-30-days' sign_zodiac=sign zodiac_slug=sign %}">Узнать гороскоп на 30 дней</a></strong></p>
 
 {% endblock %}

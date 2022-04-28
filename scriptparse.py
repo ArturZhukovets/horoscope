@@ -53,9 +53,6 @@ def get_data():
     #zodiac.split('/')[5].replace('.html', '')
 
 
-def get_content_from_zodiac():
-    pass
-
 
 def main():
     get_data()

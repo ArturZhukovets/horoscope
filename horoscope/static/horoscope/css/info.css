@@ -19,3 +19,7 @@ p {
     font-size: 25pt;
     color: #e8dede;
 }
+strong.time {
+    font-size: 19pt;
+    color: black
+}

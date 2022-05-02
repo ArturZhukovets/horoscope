@@ -3,8 +3,9 @@
 <nav class="main">
     <a href="{% url 'horoscope-index' %}">Главная</a>
 
-    {% for zodiac, description_zodiac in zodiacs.items %}
-    <a href="{% url 'horoscope-name' sign_zodiac=zodiac %}">{{ description_zodiac.split|first}}</a>
+    {% for zodiac in zodiac_name_for_navbar %}
+<!--    <a href="{% url 'horoscope-name' sign_zodiac=zodiac.zodiac_name %}">{{ zodiac.zodiac_mini_description|split|first|title}}</a>-->
+    <a href="{% url 'horoscope-name' sign_zodiac=zodiac.zodiac_name %}">{{ zodiac.zodiac_name|title}}</a>
     {% endfor %}
     <a href="https://www.homeenglish.ru/OtherGoroscop">Источник</a>
 </nav>

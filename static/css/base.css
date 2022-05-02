@@ -4,7 +4,7 @@ html {
     background-color: #094c76;
 }
 
-nav {
+nav.main {
     text-align: center;
     color: white;
     font-size: 2rem;
@@ -18,7 +18,7 @@ nav {
     overflow-x: hidden;
     padding-top: 20px;
 }
-nav a {
+nav.main a {
     color: white;
     display: block;
     font-size: 2rem;
@@ -26,6 +26,21 @@ nav a {
     text-decoration: none;
 }
 
-nav a:hover, ul a:active {
+nav.main a:hover, ul a:active {
   color: #eca8b5;
+}
+
+nav.time {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 2;
+    top: 80;
+    left: 80;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
 }

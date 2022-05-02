@@ -7,6 +7,7 @@ from scriptparse import get_data
 
 class Horoscope(models.Model):
     zodiac_name = models.CharField(max_length=30)
+    zodiac_mini_description = models.CharField(max_length=100, null=True)
     horoscope_description = models.TextField(null=True)
     slug = models.SlugField(default='', max_length=20)
     horoscope_on_30_days = models.TextField(null=True)

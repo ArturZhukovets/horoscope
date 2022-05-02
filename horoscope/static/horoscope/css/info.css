@@ -2,24 +2,49 @@
 h2 {
     color: #d2d2e5;
     text-align: center;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
     font-size: 30px;
 }
 
 h1 {
+
     color: #e8dede;
     text-align: center;
     font-family: Geneva, Arial, Helvetica, sans-serif;
-    font-size: 40px;
+    font-size: 45px;
+}
+h1.page_title{
+    font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 
 p {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
     text-align: center;
     margin-left: 200px;
-    font-size: 25pt;
-    color: #e8dede;
+    font-size: 20pt;
+    color: #d2d2e5;
 }
-strong.time {
-    font-size: 19pt;
+p.horoscope_today {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    text-align: left;
+
+}
+hyperlink.time {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 24pt;
     color: black
 }
+
+a {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    color: #d0acdf;
+    display: block;
+    font-size: 24pt;
+    margin: 20px;
+    text-decoration: none;
+    }
+
+a:hover, ul a:active {
+  color: #eca8b5;
+  text-decoration: underline;
+  }

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
-<!--{% load static %}-->
+{% load static %}
 
 {% block title%} Изменить! {% endblock %}
-
+{% block css_s %}
+ <link rel="stylesheet" href=" {% static 'horoscope/css/horoscope_for_30_days.css' %}">
+{% endblock %}
 {% block content %}
-    <h3>Тестик</h3>
-        {{horoscope_for_30_days.horoscope_on_30_days}}
+
+    <h3>{{horoscope_for_30_days.zodiac_name|title}}</h3>
+    <p>{{horoscope_for_30_days.horoscope_on_30_days}}</p>
 {% endblock%}

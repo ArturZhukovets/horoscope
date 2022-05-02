@@ -6,7 +6,6 @@ from .models import update_horoscope_script
 from datetime import datetime, date
 from horoscope.description_request import open_file
 
-
 zodiac_dict = {
     'aries': 'Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).',
     'taurus': 'Телец - второй знак зодиака, планета Венера (с 21 апреля по 21 мая).',
@@ -30,26 +29,35 @@ types_dict = {
 }
 
 
-def index(request):
-    """Здесь создаю отображение главной страницы по url horoscope подробности реализации УРОК №17
-    В качестве аргументов функции render выступает: request, html файл, context - словарь с контентом"""
-    zodiacs = list(zodiac_dict)  # создаём список знаков зодиака
-    # f"<li><a href='{redirect_path}'>{sign.title()} </a></li>"
-    # li_elements = ''  # создаём результирующую строку
-    # for sign in zodiacs:
-    #     redirect_path = reverse('horoscope-name',args=(sign,))  # в каждой итерации создаём путь url на каждый знак зодиака
-    #     li_elements += f"<li><a href='{redirect_path}'>{sign.title()} </a></li>"  # подставляем в результирующую строку знак зодиака в теге <list> и добавляем ссылку с юрлом {redirect_pass}
-    # response = f'''
-    # <ol>
-    #     {li_elements}
-    # </ol>
-    # '''
-    # return HttpResponse(response)
+def index_main(request):
+    zodiacs_from_db = Horoscope.objects.all()
     context = {
-        "zodiacs": zodiacs,  # В ключе zodiacs лежит список из ключей словаря со знаками зодиака
-        "zodiac_dict": zodiac_dict,
+        'zodiacs': zodiacs_from_db
     }
     return render(request, 'horoscope/index.html', context=context)  # аргумент context является словарём context
+
+
+# def index(request):
+#     """Здесь создаю отображение главной страницы по url horoscope подробности реализации УРОК №17
+#     В качестве аргументов функции render выступает: request, html файл, context - словарь с контентом"""
+#     zodiacs = list(zodiac_dict)  # создаём список знаков зодиака
+#     # f"<li><a href='{redirect_path}'>{sign.title()} </a></li>"
+#     # li_elements = ''  # создаём результирующую строку
+#     # for sign in zodiacs:
+#     #     redirect_path = reverse('horoscope-name',args=(sign,))  # в каждой итерации создаём путь url на каждый знак зодиака
+#     #     li_elements += f"<li><a href='{redirect_path}'>{sign.title()} </a></li>"  # подставляем в результирующую строку знак зодиака в теге <list> и добавляем ссылку с юрлом {redirect_pass}
+#     # response = f'''
+#     # <ol>
+#     #     {li_elements}
+#     # </ol>
+#     # '''
+#     # return HttpResponse(response)
+#     # zodiacs_from_db = Horoscope.objects.all()
+#     context = {
+#         "zodiacs": zodiacs,  # В ключе zodiacs лежит список из ключей словаря со знаками зодиака
+#         "zodiac_dict": zodiac_dict,
+#     }
+#     return render(request, 'horoscope/index.html', context=context)  # аргумент context является словарём context
 
 
 def info_about_type_of_sign_of_zodiac(request):
@@ -99,10 +107,11 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     horoscope_from_db = Horoscope.objects.get(zodiac_name=sign_zodiac)
     time = datetime.now().strftime("%d/%m/%Y")
 
-    description = zodiac_dict.get(sign_zodiac)  # В переменной мы обращаемся к словарю и берем значение используя вместо ключа введённое пользователем значение.
+    description = zodiac_dict.get(
+        sign_zodiac)  # В переменной мы обращаемся к словарю и берем значение используя вместо ключа введённое пользователем значение.
     data = {
         'sign': sign_zodiac,
-        'description_zodiac': description,  # Ключи в созданном словаре, будут являтся переменными в html шаблоне!
+        # 'description_zodiac': description,  # Ключи в созданном словаре, будут являтся переменными в html шаблоне!
         'zodiacs': zodiac_dict,
         'horoscope': horoscope_from_db,
         'time': time
@@ -122,7 +131,7 @@ def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
     name_zodiac = zodiac_list[
         sign_zodiac - 1]  # переменная, хранящая в себе исключительно ключ словаря (минусуем единицу, потому что индексы начинаются с нуля офк)
     redirect_url = reverse('horoscope-name', args=(
-    name_zodiac,))  # Функция reverse воссоздаёт Весь url. Т.е результатом будет сконструированный url по которому надо перейти.
+        name_zodiac,))  # Функция reverse воссоздаёт Весь url. Т.е результатом будет сконструированный url по которому надо перейти.
     return HttpResponseRedirect(redirect_url)  # перенаправляет на значение словаря по индексу
     # Можно обойтись и без редиректа, создав переменную в которой хранится значение словаря, а вместо ключа
     # выступает name_zodiac, полученная из индекса
@@ -131,7 +140,6 @@ def get_info_about_zodiac_sign_by_number(request, sign_zodiac: int):
 
 
 def get_info_by_date(request, mounth, day):
-
     return HttpResponse(f'<h2>Месяц - {mounth} День - {day}')
 
 
@@ -142,4 +150,3 @@ def get_horoscope_for_30_days(request, sign_zodiac: str, zodiac_slug: str):
         'horoscope_for_30_days': horoscope_for_30_days,
     }
     return render(request, 'horoscope/horoscope_for_30_days.html', context=context)
-

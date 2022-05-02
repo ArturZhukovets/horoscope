@@ -1,6 +1,6 @@
 {% load my_filter %}
 
-<nav>
+<nav class="main">
     <a href="{% url 'horoscope-index' %}">Главная</a>
 
     {% for zodiac, description_zodiac in zodiacs.items %}
@@ -8,3 +8,4 @@
     {% endfor %}
     <a href="https://www.homeenglish.ru/OtherGoroscop">Источник</a>
 </nav>
+

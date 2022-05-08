@@ -6,6 +6,7 @@ from .models import update_horoscope_script
 from datetime import datetime, date
 
 
+# Уже не используется, нужно убрать.
 zodiac_dict = {
     'aries': 'Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).',
     'taurus': 'Телец - второй знак зодиака, планета Венера (с 21 апреля по 21 мая).',
@@ -84,9 +85,6 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     horoscope_from_db = Horoscope.objects.get(zodiac_name=sign_zodiac)
     all_signs_for_navbar = Horoscope.objects.all()
     time = datetime.now().strftime("%d/%m/%Y")
-
-    # description = zodiac_dict.get(
-    #     sign_zodiac)  # В переменной мы обращаемся к словарю и берем значение используя вместо ключа введённое пользователем значение.
     data = {
         'sign': sign_zodiac,
         # 'description_zodiac': description,  # Ключи в созданном словаре, будут являтся переменными в html шаблоне!

@@ -6,6 +6,7 @@ from .models import update_horoscope_script
 from datetime import datetime, date
 
 
+#  Уже не используется. Нужно убрать
 zodiac_dict = {
     'aries': 'Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).',
     'taurus': 'Телец - второй знак зодиака, планета Венера (с 21 апреля по 21 мая).',
@@ -76,7 +77,7 @@ def one_of_type(request, type_zodiac: str):
 def get_info_about_zodiac_sign(request, sign_zodiac: str):
     """Функция render_to_string читает html файл и преобразовывает его в строку (и отправляем его в видео HttpResponse)
     Но можно воспользоваться функцией render, которая заменяет собой всё вышенаписанное
-    Очень важно понять, что render() использует 3ей переменной context, в которую я передаю данные в виде словаря
+    Важно понимать, что render() использует 3ей переменной context, в которую я передаю данные в виде словаря
     И в словаре ключ - это переменная, которую мы передаем в шаблон! А значение этого ключа = это значение, которое будет отображаться"""
     # response = render_to_string('horoscope/info_zodiac.html')
     # return HttpResponse(response)
